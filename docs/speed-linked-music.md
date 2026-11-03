@@ -21,8 +21,9 @@ The six band names are `STOPPED`, `WALKING`, `RUNNING`, `MEDIUM`, `FAST`, and
 
 The default smoothing window is 20 seconds, state confirmation is 10 seconds,
 and automatic switch cooldown is 60 seconds. Smoothing is clamped to 15–30
-seconds. A negative developer simulated speed disables simulation; a nonnegative
-value is interpreted as m/s and is sent only to the classifier.
+seconds. Boundary hysteresis defaults to 0.5 km/h and is configurable. A
+negative developer simulated speed disables simulation; a nonnegative value is
+interpreted as m/s and is sent only to the classifier.
 
 ## Build and apply
 
