@@ -39,6 +39,12 @@ compatible YouTube APK, select `Speed-linked music mode`, and install the
 resulting APK through the normal Morphe flow. Do not patch an already patched
 APK.
 
+The fork includes a GitHub Actions build trigger for this branch. If Actions is
+disabled on the fork, enable it in the repository's Actions tab, then download
+the `patches/build/libs` artifact from the completed `Build pull request` run.
+That `.mpp` bundle can be selected as a custom patch bundle in the normal
+Morphe Manager workflow.
+
 The implementation uses Morphe's existing in-process watch intent bridge
 (`LoadVideoPatch.deliverVideoIntentInProcess`) and does not alter normal
 YouTube playback when the setting is disabled.
