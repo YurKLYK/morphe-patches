@@ -97,6 +97,19 @@ import app.morphe.extension.youtube.videoplayer.PlayAllButton.PlaylistIDPrefix;
 import app.morphe.extension.youtube.videoplayer.PlayerIcons;
 
 public class Settings extends SharedYouTubeSettings {
+    // Speed-linked music is opt-in and remains disabled by default.
+    public static final BooleanSetting SPEED_LINKED_MUSIC_ENABLED = new BooleanSetting("morphe_speed_linked_music_enabled", FALSE);
+    public static final StringSetting SPEED_LINKED_MUSIC_SET = new StringSetting("morphe_speed_linked_music_set", "", true);
+    public static final StringSetting SPEED_LINKED_MUSIC_BANDS = new StringSetting("morphe_speed_linked_music_bands", "", true);
+    public static final IntegerSetting SPEED_LINKED_MUSIC_SMOOTHING_MS = new IntegerSetting("morphe_speed_linked_music_smoothing_ms", 20000, true);
+    public static final IntegerSetting SPEED_LINKED_MUSIC_CONFIRMATION_MS = new IntegerSetting("morphe_speed_linked_music_confirmation_ms", 10000, true);
+    public static final IntegerSetting SPEED_LINKED_MUSIC_COOLDOWN_MS = new IntegerSetting("morphe_speed_linked_music_cooldown_ms", 60000, true);
+    public static final FloatSetting SPEED_LINKED_MUSIC_HYSTERESIS_KMH = new FloatSetting("morphe_speed_linked_music_hysteresis_kmh", 0.5f, true);
+    /** Development-only simulated speed in m/s. Negative disables simulation. */
+    public static final FloatSetting SPEED_LINKED_MUSIC_DEBUG_SPEED_MS = new FloatSetting("morphe_speed_linked_music_debug_speed_ms", -1.0f, true);
+    public static final StringSetting SPEED_LINKED_MUSIC_UNKNOWN_BEHAVIOR = new StringSetting("morphe_speed_linked_music_unknown_behavior", "KEEP", true);
+    public static final StringSetting SPEED_LINKED_MUSIC_NORMAL_VIDEO_ID = new StringSetting("morphe_speed_linked_music_normal_video_id", "", true);
+
     // Video
     public static final EnumSetting<PlaybackBufferSize> PLAYBACK_BUFFER_SIZE = new EnumSetting<>("morphe_playback_buffer_size", PlaybackBufferSize.DEFAULT, true);
     public static final IntegerSetting VIDEO_DELAY = new IntegerSetting("morphe_video_delay", 0);
