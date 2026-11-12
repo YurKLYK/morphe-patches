@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/YurKLYK/morphe-patches/compare/v1.0.0...v1.0.1) (2026-11-12)
+
+### 🐛 Bug Fixes
+
+* **ci:** use repository default branch for Crowdin sync ([14e1f21](https://github.com/YurKLYK/morphe-patches/commit/14e1f2197361cc6e5856a9b68a19add8463bc8e5))
+
 ## 1.0.0 (2026-11-03)
 
 ### ⚠ BREAKING CHANGES
