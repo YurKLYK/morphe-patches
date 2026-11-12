@@ -11,15 +11,15 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout dev
+      - name: Checkout default branch
         uses: actions/checkout@v7
         with:
-          ref: dev
+          ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
           clean: true
 
       - name: Reset Crowdin branch
-        run: git push origin dev:crowdin --force
+        run: git push origin "${{ github.event.repository.default_branch }}:crowdin" --force
 
       - name: Pull strings from Crowdin
         uses: crowdin/github-action@v3
@@ -36,7 +36,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
   merge:
-    name: Squash merge Crowdin into Dev
+    name: Squash merge Crowdin into default branch
     if: github.event_name == 'workflow_dispatch'
     needs: pull
     permissions:
@@ -60,11 +60,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew checkStringResources
 
-      # Step 3: Checkout dev branch to prepare for merging
-      - name: Checkout dev branch for merge
+      # Step 3: Checkout the default branch to prepare for merging
+      - name: Checkout default branch for merge
         uses: actions/checkout@v7
         with:
-          ref: dev
+          ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
           clean: true
 
@@ -72,11 +72,11 @@ jobs:
       - name: Fetch crowdin branch
         run: git fetch origin crowdin
 
-      # Step 5: Squash merge crowdin into dev
-      - name: Squash merge crowdin into dev
+      # Step 5: Squash merge crowdin into the default branch
+      - name: Squash merge crowdin into default branch
         run: |
           git config --local user.name "Crowdin Bot"
           git config --local user.email "support+bot@crowdin.com"
           git merge --squash origin/crowdin
           git commit --allow-empty -m "chore: Update translations from Crowdin"
-          git push origin dev
+          git push origin "${{ github.event.repository.default_branch }}"
